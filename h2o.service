@@ -1,0 +1,16 @@
+[Unit]
+Description=h2o server
+After=networking.service
+Requires=networking.service
+
+[Service]
+User=root
+Type=forking
+PIDFile=/run/h2o.pid
+ExecStartPre=/usr/local/bin/h2o -c /usr/local/etc/h2o/h2o.conf -t
+ExecStart=/usr/local/bin/h2o -c /usr/local/etc/h2o/h2o.conf -m daemon
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+
+[Install]
+WantedBy=multi-user.target
