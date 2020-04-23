@@ -7,7 +7,7 @@ help:
 install: _install_h2o ## install h2o and h2o settings
 	sudo mkdir -p /usr/local/etc/h2o
 	sudo chown $(whoami):$(whoami) /usr/local/etc/h2o
-	cp h2o.conf /etc/systemd/system/
+	cp h2o.conf /usr/local/etc/h2o
 	sudo cp h2o.service /etc/systemd/system/
 	sudo systemctl daemon-reload
 
