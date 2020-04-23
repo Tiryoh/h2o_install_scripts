@@ -19,6 +19,6 @@ build: ## download h2o from GitHub and build h2o
 	git clone https://github.com/h2o/h2o.git
 	sudo mkdir -p /usr/local/src
 	sudo mv h2o /usr/local/src/
-	cd /usr/local/src/h2o && git checkout $(curl -sSfL https://api.github.com/repos/h2o/h2o/releases/latest | grep html_url | grep h2o |sed -e 's/.*tag\/\(.*\)".*/\1/g')
+	cd /usr/local/src/h2o && git checkout $(curl -sSfL https://api.github.com/repos/h2o/h2o/releases/latest | grep html_url | grep h2o | sed -E 's#.*tag/(.*)\".*#\1#g')
 	cmake -DWITH_BUNDLED_SSL=on .
 	make
